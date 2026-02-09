@@ -1,0 +1,45 @@
+apiVersion: karpenter.k8s.aws/v1
+kind: EC2NodeClass
+metadata:
+  name: dev-optimized
+spec:
+  # AMI - Amazon Linux 2023 ARM64
+  amiFamily: AL2023
+  amiSelectorTerms:
+    - alias: al2023@latest
+
+  # Subnets - private subnets tagged for Karpenter
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: my-cluster-name  # CHANGE THIS
+
+  # Security Groups
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: my-cluster-name  # CHANGE THIS
+
+  # IAM Role for nodes
+  role: KarpenterNodeRole-my-cluster  # CHANGE THIS
+
+  # Disk configuration - gp3 (cheaper than gp2)
+  blockDeviceMappings:
+    - deviceName: /dev/xvda
+      ebs:
+        volumeSize: 50Gi
+        volumeType: gp3
+        encrypted: true
+        deleteOnTermination: true
+
+  # IMDSv2 required (security)
+  metadataOptions:
+    httpEndpoint: enabled
+    httpProtocolIPv6: disabled
+    httpPutResponseHopLimit: 2
+    httpTokens: required
+
+  # Tags
+  tags:
+    Name: my-cluster-karpenter-dev
+    Environment: dev
+    ManagedBy: karpenter
+    karpenter.sh/discovery: my-cluster-name  # CHANGE THIS

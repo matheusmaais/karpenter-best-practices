@@ -1,0 +1,50 @@
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: default
+spec:
+  # Template for nodes
+  template:
+    metadata:
+      labels:
+        node.kubernetes.io/managed-by: karpenter
+    spec:
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: default
+
+      # Requirements - what kinds of nodes can be created
+      requirements:
+        - key: kubernetes.io/arch
+          operator: In
+          values: ["arm64"]
+        - key: kubernetes.io/os
+          operator: In
+          values: ["linux"]
+        - key: karpenter.sh/capacity-type
+          operator: In
+          values: ["spot"]
+        - key: karpenter.k8s.aws/instance-category
+          operator: In
+          values: ["t"]
+        - key: karpenter.k8s.aws/instance-generation
+          operator: Gt
+          values: ["3"]
+
+  # Limits - prevent runaway scaling
+  limits:
+    cpu: "100"
+    memory: 200Gi
+
+  # Disruption budget
+  disruption:
+    consolidationPolicy: WhenEmpty
+    consolidateAfter: 1m
+    expireAfter: 720h  # 30 days
+
+    budgets:
+      - nodes: "10%"
+
+  # Weight - lower number = higher priority
+  weight: 10
