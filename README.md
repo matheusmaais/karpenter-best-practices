@@ -61,40 +61,40 @@ kubectl get nodepools
 
 - [Pré-requisitos](docs/03-installation/prerequisites.md)
 - [Instalação via Terraform](docs/03-installation/terraform-installation.md)
-- [Instalação via Helm](docs/03-installation/helm-installation.md)
-- [Validação](docs/03-installation/validation.md)
+- Instalação via Helm - 🚧 Em desenvolvimento
+- Validação - 🚧 Em desenvolvimento
 
 ### Configuração
 
 - [NodePools e EC2NodeClass](docs/04-configuration/nodepools.md)
-- [Seleção de Instance Types](docs/04-configuration/instance-types.md)
 - [Spot Instances](docs/04-configuration/spot-instances.md)
 - [AWS Graviton (ARM64)](docs/04-configuration/graviton.md)
-- [Multi-Arquitetura](docs/04-configuration/multi-architecture.md)
+- Seleção de Instance Types - 🚧 Em desenvolvimento
+- Multi-Arquitetura - 🚧 Em desenvolvimento
 
 ### Otimização de Custos 💰
 
 - [Consolidação de Nós](docs/05-cost-optimization/consolidation.md) - **Economia de 30-40%**
-- [Estratégias Spot](docs/05-cost-optimization/spot-strategies.md)
 - [Resource Requests](docs/05-cost-optimization/resource-requests.md) - **CRÍTICO**
-- [Monitoramento de Custos](docs/05-cost-optimization/monitoring.md)
+- Estratégias Spot - 🚧 Em desenvolvimento
+- Monitoramento de Custos - 🚧 Em desenvolvimento
 
 ### Produção
 
-- [Alta Disponibilidade](docs/06-production-ready/high-availability.md)
-- [Disruption Budgets](docs/06-production-ready/disruption-budgets.md)
 - [Segurança e IRSA](docs/06-production-ready/security.md)
-- [Observabilidade](docs/06-production-ready/observability.md)
+- Alta Disponibilidade - 🚧 Em desenvolvimento
+- Disruption Budgets - 🚧 Em desenvolvimento
+- Observabilidade - 🚧 Em desenvolvimento
 
 ### Troubleshooting
 
 - [Problemas Comuns](docs/07-troubleshooting/common-issues.md)
-- [Debugging](docs/07-troubleshooting/debugging.md)
 - [FAQ](docs/07-troubleshooting/faq.md)
+- Debugging - 🚧 Em desenvolvimento
 
 ### Migração
 
-- [Migração do Cluster Autoscaler](docs/08-migration.md)
+- Migração do Cluster Autoscaler - 🚧 Em desenvolvimento
 
 ## 💡 Exemplos Práticos
 
@@ -116,19 +116,11 @@ Configuração agressiva para ambientes de desenvolvimento:
 - ARM64 Graviton
 - Timers rápidos (30s)
 
-### [Otimizado para Custo - Prod](examples/cost-optimized/prod-environment/)
-Configuração balanceada para produção:
-- **Economia: 20-30%**
-- Consolidação moderada
-- Mix Spot + On-Demand
-- Multi-arquitetura
-- PodDisruptionBudgets
+### Otimizado para Custo - Prod
+🚧 Em desenvolvimento - Configuração balanceada para produção
 
-### [Multi-Tenancy](examples/multi-tenancy/)
-Múltiplos NodePools para diferentes workloads:
-- NodePool para GPU
-- NodePool para batch jobs
-- NodePool para stateful workloads
+### Multi-Tenancy
+🚧 Em desenvolvimento - Múltiplos NodePools para diferentes workloads
 
 ## 🛠️ Scripts Úteis
 
